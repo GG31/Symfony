@@ -1,0 +1,23 @@
+blogger_blog_cours_ihm_homepage:
+    pattern:  /index/{page}
+    defaults: { _controller: BloggerBlogCoursIhmBundle:Default:index }
+
+blogger_blog_cours_ihm_contactpage:
+    pattern:  /contact
+    defaults: { _controller: BloggerBlogCoursIhmBundle:Default:contact }
+
+blogger_blog_cours_ihm_articlepage:
+    pattern:  /article/{id}
+    defaults: { _controller: BloggerBlogCoursIhmBundle:Default:article }
+    requirements:
+        id: \d+
+
+blogger_blog_cours_ihm_ajouterpage:
+    pattern:  /ajouter
+    defaults: { _controller: BloggerBlogCoursIhmBundle:Default:ajouter }
+
+blogger_blog_cours_ihm_commentpage:
+    pattern:  /comment
+    defaults: { _controller: BloggerBlogCoursIhmBundle:Default:comment }
+
+

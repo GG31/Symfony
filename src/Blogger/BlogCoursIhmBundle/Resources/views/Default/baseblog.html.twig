@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		{% block stylesheets %}
+		<!-- some stylesheet, using the asset() function to get the link to the resource -->
+		<link rel="stylesheet" type="text/css" href="{{asset('bundle/Blogger/BlogCoursIhmBundle/css/base.css')}}">
+		{% endblock %}
+		<title>{% block title %}bloc titre{% endblock %}</title>
+	</head>
+	<body>
+	{% block body %}
+		{% block header %}
+		<!-- Your banner and headers information goes ther -->
+LOL
+		{% endblock %}
+
+		{% block menu %}
+		<!-- put your menu here -->
+		<ul>
+			<li>Accueil</li>
+			<li>à propos</li>
+			<li>Contact</li>
+		</ul>
+		{% endblock %}
+	{% endblock %}
+	</body>
+</html>

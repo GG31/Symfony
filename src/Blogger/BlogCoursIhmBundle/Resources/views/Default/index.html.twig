@@ -1,0 +1,16 @@
+{# src/Blogger/BlogCoursIhmBundle/Resources/views/index.html.twig #}
+ 
+{% extends 'BloggerBlogCoursIhmBundle:Default:baseblog.html.twig' %}
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block body %}{{ parent()}}
+
+<h2>{{ articles.1.titre }}</h2>
+  <i>Par {{ articles.1.auteur }}, le {{ articles.1.date|date('d/m/Y') }}</i>
+ 
+  <div class="well">
+    {{ articles.1.contenu }}
+  </div>
+	bloc body index
+{% endblock %}

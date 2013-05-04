@@ -1,0 +1,9 @@
+{# src/Blogger/BlogCoursIhmBundle/Resources/views/index.html.twig #}
+ 
+{% extends 'BloggerBlogCoursIhmBundle:Default:baseblog.html.twig' %}
+
+{% block body %}{{ parent() }}
+<h1>Ajouter article</h1>
+{% include "BloggerBlogCoursIhmBundle:Default:formulaire.html.twig" %}
+
+{% endblock %}

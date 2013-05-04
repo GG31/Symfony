@@ -1,0 +1,4 @@
+blogger_blog_cours_ihm:
+    resource: "@BloggerBlogCoursIhmBundle/Resources/config/routing.yml"
+    prefix:   /
+

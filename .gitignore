@@ -1,0 +1,14 @@
+/web/bundles/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/logs/*
+/build/
+/vendor/
+/bin/
+/composer.phar
+*~
+*.class
+composer.json
+composer.lock
+UPGRADE.md
+UPGRADE-2.2.md
