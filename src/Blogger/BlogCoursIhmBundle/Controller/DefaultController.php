@@ -34,7 +34,6 @@ class DefaultController extends Controller
       'contenu' => '+500% sur 1 an, fabuleux. Blabla…',
       'date'    => new \Datetime())
         );
-     
         // Puis modifiez la ligne du render comme ceci, pour prendre en compte nos articles :
         return $this->render('BloggerBlogCoursIhmBundle:Default:index.html.twig', array(
         'articles' => $articles

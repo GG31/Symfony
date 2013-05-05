@@ -1,4 +1,4 @@
-{# src/Blogger/BlogCoursIhmBundle/Resources/views/index.html.twig #}
+{# src/Blogger/BlogCoursIhmBundle/Resources/views/Default/index.html.twig #}
  
 {% extends 'BloggerBlogCoursIhmBundle:Default:baseblog.html.twig' %}
 
@@ -14,7 +14,7 @@
   </div>
 
   <p>
-    <a href="{{ path('BloggerBlogCoursIhm:Default:index', {'page': 1}) }}"* class="btn">
+    <a href="{{ path('blogger_blog_cours_ihm_homepage', {'page': 1}) }}" class="btn">
       <i class="icon-chevron-left"></i>
       Retour à la liste
     </a>
