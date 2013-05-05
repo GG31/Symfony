@@ -1,9 +1,8 @@
 <?php
 // src/Blogger/StoreBundle/Entity/Article.php
-namespace Blogger\BlogCoursIhmBundle\Modele\Article;
+namespace Blogger\BlogCoursIhmBundle\Modele;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="article")
@@ -53,7 +52,7 @@ class Article
     
     public function __construct()
     {
-        $this->comments = new ArrayCollection();
+        //$this->comments = new ArrayCollection();
 
         $this->setCreated(new \DateTime());
         $this->setUpdated(new \DateTime());
@@ -78,7 +77,7 @@ class Article
     }
 
     public function isSpam($t){
-        return false;
+        return true;
     }
 }
 ?>

@@ -30,18 +30,12 @@ nav{
 	float: left;
 }
 section{
-	position: relative;
-	left: 205px;
+	margin-left: 205px;
 	background-color: #E1BD94;
 	padding: 10px;
 	height: 880px;
 	width: 675px;
 	text-align: left;
-}
-.section{
-	position: relative;
-	right: 190px;
-	bottom: 20px;
 }
 .footerArticle{
 	height: 30px;
