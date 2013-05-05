@@ -4,24 +4,39 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		{% block stylesheets %}
 		<!-- some stylesheet, using the asset() function to get the link to the resource -->
-		<link rel="stylesheet" type="text/css" href="{{asset('bundle/Blogger/BlogCoursIhmBundle/css/base.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{asset('bundles/bloggerblogcoursihm/css/base.css')}}">
 		{% endblock %}
 		<title>{% block title %}bloc titre{% endblock %}</title>
 	</head>
 	<body>
 	{% block body %}
+
 		{% block header %}
+		<header>
+		<div>Header du blog Cours IHM, c'est l'éclate !</div>
 		<!-- Your banner and headers information goes ther -->
-LOL
+		</header>
 		{% endblock %}
 
 		{% block menu %}
-		<!-- put your menu here -->
-		<ul>
-			<li>Accueil</li>
-			<li>à propos</li>
-			<li>Contact</li>
-		</ul>
+		<nav>
+			<!-- put your menu here -->
+			<ul>
+				<li>Se Connecter</li>
+				<li>Accueil</li>
+				<li>Composer</li>
+				<li>Consulter</li>
+				<li>Jouer</li>
+				<li>à propos</li>
+				<li>Contact</li>
+			</ul>
+		</nav>
+		{% endblock %}
+
+		{% block footer %}
+		<footer>
+		<div>footer !</div>
+		</footer>
 		{% endblock %}
 	{% endblock %}
 	</body>

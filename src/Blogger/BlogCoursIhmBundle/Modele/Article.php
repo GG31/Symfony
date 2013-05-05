@@ -1,6 +1,6 @@
 <?php
 // src/Blogger/StoreBundle/Entity/Article.php
-namespace Blogger\StoreBundle\Entity;
+namespace Blogger\BlogCoursIhmBundle\Modele\Article;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -75,6 +75,10 @@ class Article
 
     public function setUpdated($date){
         $this->lastModified=$date;
+    }
+
+    public function isSpam($t){
+        return false;
     }
 }
 ?>

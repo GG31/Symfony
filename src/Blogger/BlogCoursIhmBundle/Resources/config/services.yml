@@ -1,7 +1,12 @@
-parameters:
+#parameters:
 #    blogger_blog_cours_ihm.example.class: Blogger\BlogCoursIhmBundle\Example
-
+#
 services:
+#    blogger_blog_cours_ihm.Article
+#        class: Blogger\BlogCoursIhmBundle\Modele\Article
+#    blogger_blog_cours_ihm.Comment
+#        class: Blogger\BlogCoursIhmBundle\Modele\Comment
+         
 #    blogger_blog_cours_ihm.example:
 #        class: %blogger_blog_cours_ihm.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]

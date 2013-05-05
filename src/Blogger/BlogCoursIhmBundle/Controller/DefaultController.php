@@ -35,6 +35,10 @@ class DefaultController extends Controller
       'date'    => new \Datetime())
         );
         // Puis modifiez la ligne du render comme ceci, pour prendre en compte nos articles :
+        /**$antispam = $this->get('blogger_blog_cours_ihm.Article')
+        if($antispam->isSpam("p")){
+          throw new \Exception('SPAM !');
+        }*/
         return $this->render('BloggerBlogCoursIhmBundle:Default:index.html.twig', array(
         'articles' => $articles
         ));
