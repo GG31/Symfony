@@ -1,6 +1,6 @@
 <?php
 // src/Blogger/StoreBundle/Entity/Comment.php
-namespace Blogger\StoreBundle\Entity;
+namespace Blogger\BlogCoursIhmBundle\Modele;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -76,34 +76,6 @@ class Comment
     public function setCreated($creationDate){
         $this->creationDate = $creationDate;
     }
-}
-
-
-
-
-
-
-
-
-
-// src/Acme/StoreBundle/Controller/DefaultController.php
-
-// ...
-use Acme\StoreBundle\Entity\Product;
-use Symfony\Component\HttpFoundation\Response;
-
-public function createAction()
-{
-    $product = new Product();
-    $product->setName('A Foo Bar');
-    $product->setPrice('19.99');
-    $product->setDescription('Lorem ipsum dolor');
-
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($product);
-    $em->flush();
-
-    return new Response('Created product id '.$product->getId());
 }
 
 ?>

@@ -3,9 +3,24 @@
 namespace Blogger\BlogCoursIhmBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Blogger\BlogCoursIhmBundle\Modele\Article;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+    function createAction()
+    {
+      $product = new Article('Le titre', 'L\'auteur', 'Un petit contenu');
+      /*$product->setName('A Foo Bar');
+      $product->setPrice('19.99');
+      $product->setDescription('Lorem ipsum dolor');*/
+
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($product);
+      $em->flush();
+
+      return new Response('Created product id '.$product->getId());
+    }
     public function indexAction($page)
     {
     	if( $page < 1 )
@@ -35,10 +50,10 @@ class DefaultController extends Controller
       'date'    => new \Datetime())
         );
         // Puis modifiez la ligne du render comme ceci, pour prendre en compte nos articles :
-        $antispam = $this->get('blogger_blog_cours_ihm.Article');
-        if($antispam->isSpam("p")){
+        /*$antispam = $this->get('blogger_blog_cours_ihm.Article');
+        if($antispam->isSpam()){
           throw new \Exception('SPAM !');
-        }
+        }*/
         return $this->render('BloggerBlogCoursIhmBundle:Default:index.html.twig', array(
         'articles' => $articles
         ));

@@ -4,8 +4,9 @@
 services:
     blogger_blog_cours_ihm.Article:
         class: Blogger\BlogCoursIhmBundle\Modele\Article
-#    blogger_blog_cours_ihm.Comment
-#        class: Blogger\BlogCoursIhmBundle\Modele\Comment
+        arguments: ['titre', 'auteur', 'mon contenu....']
+    blogger_blog_cours_ihm.Comment:
+        class: Blogger\BlogCoursIhmBundle\Modele\Comment
          
 #    blogger_blog_cours_ihm.example:
 #        class: %blogger_blog_cours_ihm.example.class%

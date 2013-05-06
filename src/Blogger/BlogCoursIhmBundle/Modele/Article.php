@@ -5,6 +5,7 @@ namespace Blogger\BlogCoursIhmBundle\Modele;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Blogger\BlogCoursIhmBundle\Modele\ArticleRepository")
  * @ORM\Table(name="article")
  */
 class Article
@@ -50,9 +51,13 @@ class Article
     
     //------------------  Constructors  ------------------//
     
-    public function __construct()
+    public function __construct($title, $author, $content)
     {
-        //$this->comments = new ArrayCollection();
+        $this->title = $title;
+        $this->author = $author;
+        $this->content = $content;
+        //$this->chiffre = $chiffre;
+        $this->comments = new ArrayCollection();
 
         $this->setCreated(new \DateTime());
         $this->setUpdated(new \DateTime());
@@ -76,8 +81,11 @@ class Article
         $this->lastModified=$date;
     }
 
-    public function isSpam($t){
-        return true;
+    public function isSpam(){
+        if($this->chiffre==0){
+            return true;
+        }
+        return false;
     }
 }
 ?>
