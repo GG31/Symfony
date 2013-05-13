@@ -9,7 +9,7 @@
 <section>
   <div class="section">
     <h2>{{ article.titre }}</h2>
-    <i>Par {{ article.auteur }}, le {{ article.date|date('d/m/Y') }}</i>
+    <i>Par {{ article.auteur }}, le {{ article.creationDate|date('d/m/Y') }}</i>
  
     <div class="well">
       {{ article.contenu }}

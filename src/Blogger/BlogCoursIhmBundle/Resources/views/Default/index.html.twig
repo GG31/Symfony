@@ -10,12 +10,15 @@
 
 <section>
   <div class="section">
-    <h2>{{ articles.1.titre }}</h2>
-  	<i>Par {{ articles.1.auteur }}, le {{ articles.1.date|date('d/m/Y') }}</i>
- 
+
+    {% for article in articles %}
+    <h2>{{ article.titre }}</h2>
+  	<i>Par {{ article.auteur }}, le {{ article.creationDate|date('d/m/Y') }}</i>
   	<div class="well">
-    	{{ articles.1.contenu }}
+    	{{ article.contenu }}
   	</div>
+    {% endfor %}
+
   </div>
   <div class="footerArticle">footer1 <a href="{{ path('blogger_blog_cours_ihm_homepage', {'page': 1}) }}" class="btn">
         <i class="icon-chevron-left"></i>
