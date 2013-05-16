@@ -58,7 +58,8 @@ class DefaultController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         //$article = $entityManager->find('BloggerBlogCoursIhmBundle:Article', $id);
         $repository = $entityManager->getRepository('BloggerBlogCoursIhmBundle:Article');
-        $articles = $repository->findAll();
+        $date = new \Datetime();
+        $articles = $repository->findBy(array(), null, 10, 10*($page-1));
         return $this->render('BloggerBlogCoursIhmBundle:Default:index.html.twig', array(
         'articles' => $articles
         ));
@@ -103,10 +104,30 @@ class DefaultController extends Controller
     		$this->get('session')->getFlashBag()->add('notice', 'Article bien enregistré');
     		return $this->render('BloggerBlogCoursIhmBundle:Default:article.html.twig', array('id' => 0));
     	}*/
-      $article = new Article('Second !', 'auteur2', 'contenu : LOL');
+      /*$article = new Article('Second !', 'auteur2', 'contenu : LOL');
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($article);
       $entityManager->flush();
-    	return $this->render('BloggerBlogCoursIhmBundle:Default:ajouter.html.twig');
+    	return $this->render('BloggerBlogCoursIhmBundle:Default:ajouter.html.twig');*/
+      $article = new Article();
+      $formBuilder = $this->createFormBuilder($article);
+      $formBuilder 
+                    -> add('titre', 'text')
+                    -> add('auteur', 'text')
+                    -> add('content', 'textarea');
+      $form = $formBuilder->getForm();
+
+      $request = $this->get('request');
+      if($request->getMethod() == 'POST'){
+        $form->bind($request);
+        if($form->isValid()){
+          $entityManager = $this->getDoctrine()->getManager();
+          $entityManager->persist($article);
+          $entityManager->flush();
+
+          return $this->render('BloggerBlogCoursIhmBundle:Default:article.html.twig', array('id'=> $article->getId()));
+        }
+      }
+      return $this->render('BloggerBlogCoursIhmBundle:Default:ajouter.html.twig', array('form'=>$form->createView()));
     }
 }

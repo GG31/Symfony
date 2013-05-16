@@ -5,7 +5,9 @@
  
 <h3>Formulaire d'article</h3>
  
-{# Ici on laisse vide la vue pour l'instant, on la comblera plus tard lorsqu'on saura afficher un formulaire. #}
+<form method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" />
+  </form>
 <div class="well">
-  Ici se trouvera le formulaire.
 </div>

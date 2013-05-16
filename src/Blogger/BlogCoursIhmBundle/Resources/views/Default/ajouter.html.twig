@@ -1,9 +1,20 @@
-{# src/Blogger/BlogCoursIhmBundle/Resources/views/index.html.twig #}
- 
+{# src/Blogger/BlogCoursIhmBundle/Resources/views/ajouter.html.twig #}
 {% extends 'BloggerBlogCoursIhmBundle:Default:baseblog.html.twig' %}
 
-{% block body %}{{ parent() }}
-<h1>Ajouter article</h1>
-{% include "BloggerBlogCoursIhmBundle:Default:formulaire.html.twig" %}
+{% block title %}{{ parent() }} - Index{% endblock %}
 
+{% block body %}
+{% block header %}{{ parent()}}{% endblock %}
+{% block menu %}{{ parent()}}{% endblock %}
+
+<section>
+  <div class="section">
+	<h1>Ajouter article</h1>
+    {% include "BloggerBlogCoursIhmBundle:Default:formulaire.html.twig" %}
+
+  </div>
+  
+</section>
+
+{% block footer %}{{ parent()}}{% endblock %}
 {% endblock %}

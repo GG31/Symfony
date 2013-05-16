@@ -12,7 +12,10 @@
   <div class="section">
 
     {% for article in articles %}
+    <a href="{{ path('blogger_blog_cours_ihm_articlepage', {'id': article.id}) }}" class="btn">
+        <i class="icon-chevron-left"></i>
     <h2>{{ article.titre }}</h2>
+    </a>
   	<i>Par {{ article.auteur }}, le {{ article.creationDate|date('d/m/Y') }}</i>
   	<div class="well">
     	{{ article.contenu }}
