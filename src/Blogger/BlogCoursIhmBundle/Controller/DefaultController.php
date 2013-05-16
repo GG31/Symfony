@@ -4,7 +4,10 @@ namespace Blogger\BlogCoursIhmBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogCoursIhmBundle\Entity\Article;
+use Blogger\BlogCoursIhmBundle\Entity\Comment;
 use Symfony\Component\HttpFoundation\Response;
+use Blogger\BlogCoursIhmBundle\Form\ArticleType;
+use Blogger\BlogCoursIhmBundle\Form\CommentType;
 
 class DefaultController extends Controller
 {
@@ -29,32 +32,7 @@ class DefaultController extends Controller
       	// Cela va afficher la page d'erreur 404 (on pourra personnaliser cette page plus tard d'ailleurs)
       	throw $this->createNotFoundException('Page inexistante (page = '.$page.')');
     	}
-        /*$articles = array(
-    array(
-      'titre'   => 'Article 1 par défaut dans array.0',
-      'id'      => 1,
-      'auteur'  => 'winzou',
-      'contenu' => 'Ce weekend était trop bien. Blabla…',
-      'date'    => new \Datetime()),
-    array(
-      'titre'   => 'Article 2 par défaut dans array.1',
-      'id'      => 2,
-      'auteur' => 'winzou',
-      'contenu' => 'Bientôt prêt pour le jour J. Blabla…',
-      'date'    => new \Datetime()),
-    array(
-      'titre'   => 'Article 3 par défaut dans array.2',
-      'id'      => 3,
-      'auteur' => 'M@teo21',
-      'contenu' => '+500% sur 1 an, fabuleux. Blabla…',
-      'date'    => new \Datetime())
-        );*/
 
-        // Puis modifiez la ligne du render comme ceci, pour prendre en compte nos articles :
-        /*$antispam = $this->get('blogger_blog_cours_ihm.Article');
-        if($antispam->isSpam()){
-          throw new \Exception('SPAM !');
-        }*/
         $entityManager = $this->getDoctrine()->getManager();
         //$article = $entityManager->find('BloggerBlogCoursIhmBundle:Article', $id);
         $repository = $entityManager->getRepository('BloggerBlogCoursIhmBundle:Article');
@@ -63,6 +41,7 @@ class DefaultController extends Controller
         return $this->render('BloggerBlogCoursIhmBundle:Default:index.html.twig', array(
         'articles' => $articles
         ));
+    
     }
 
     public function contactAction()
@@ -72,13 +51,6 @@ class DefaultController extends Controller
 
     public function articleAction($id)
     {
-        /*$article = array(
-          'titre'   => 'Article par défaut de articleAction !',
-          'id'      => 1,
-          'auteur'  => 'winzou',
-          'contenu' => 'Ce weekend était trop bien. Blabla…',
-          'date'    => new \Datetime()
-        );*/
         $entityManager = $this->getDoctrine()->getManager();
         //$article = $entityManager->find('BloggerBlogCoursIhmBundle:Article', $id);
         $repository = $entityManager->getRepository('BloggerBlogCoursIhmBundle:Article');
@@ -87,9 +59,28 @@ class DefaultController extends Controller
           throw $this->createNotFoundException('Article[id='.$id.'] inexistant');
         }
         // Puis modifiez la ligne du render comme ceci, pour prendre en compte nos articles :
+
+        //$article = $entityManager->find('BloggerBlogCoursIhmBundle:Article', $id);
+        $repository = $entityManager->getRepository('BloggerBlogCoursIhmBundle:Comment');
+        $date = new \Datetime();
+        $comments = $repository->findByArticle(array('article' => $article), array('creationDate' => 'desc'));
+
+          $comment = new Comment();
+          $comment->setArticle($article);
+          $form = $this->createForm(new CommentType, $comment);
+          $request = $this->get('request');
+          if($request->getMethod() == 'POST'){
+            $form->bind($request);
+            if($form->isValid()){
+              $entityManager->persist($comment);
+              $entityManager->flush();
+              $comments = $repository->findByArticle(array('article' => $article), array('creationDate' => 'desc'));
+              return $this->render('BloggerBlogCoursIhmBundle:Default:article.html.twig', array('article'=> $article, 'comments' => $comments, 'form'=>$form->createView()));
+            }
+          }
+        
         return $this->render('BloggerBlogCoursIhmBundle:Default:article.html.twig', array(
-        'article' => $article
-        ));
+        'article' => $article, 'comments' => $comments, 'form'=>$form->createView()));
     }
 
     public function commentAction($id)
@@ -99,24 +90,16 @@ class DefaultController extends Controller
 
     public function ajouterAction()
     {
-    	/*if($this->get('request')->getMethod() == 'POST')
-    	{
-    		$this->get('session')->getFlashBag()->add('notice', 'Article bien enregistré');
-    		return $this->render('BloggerBlogCoursIhmBundle:Default:article.html.twig', array('id' => 0));
-    	}*/
-      /*$article = new Article('Second !', 'auteur2', 'contenu : LOL');
-      $entityManager = $this->getDoctrine()->getManager();
-      $entityManager->persist($article);
-      $entityManager->flush();
-    	return $this->render('BloggerBlogCoursIhmBundle:Default:ajouter.html.twig');*/
       $article = new Article();
-      $formBuilder = $this->createFormBuilder($article);
+      /*$formBuilder = $this->createFormBuilder($article);
       $formBuilder 
                     -> add('titre', 'text')
                     -> add('auteur', 'text')
                     -> add('content', 'textarea');
-      $form = $formBuilder->getForm();
+      $form = $formBuilder->getForm();*/
 
+      
+      $form = $this->createForm(new ArticleType, $article);
       $request = $this->get('request');
       if($request->getMethod() == 'POST'){
         $form->bind($request);
@@ -125,7 +108,7 @@ class DefaultController extends Controller
           $entityManager->persist($article);
           $entityManager->flush();
 
-          return $this->render('BloggerBlogCoursIhmBundle:Default:article.html.twig', array('id'=> $article->getId()));
+          return $this->render('BloggerBlogCoursIhmBundle:Default:article.html.twig', array('article'=> $article));
         }
       }
       return $this->render('BloggerBlogCoursIhmBundle:Default:ajouter.html.twig', array('form'=>$form->createView()));

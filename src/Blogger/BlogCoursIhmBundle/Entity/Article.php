@@ -4,8 +4,10 @@ namespace Blogger\BlogCoursIhmBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="article")
  */
 class Article
@@ -53,9 +55,9 @@ class Article
     
     public function __construct()
     {
-        $this->titre = 'Titre Default';
-        $this->author = 'Author Default';
-        $this->content = 'Content Default';
+        $this->titre = '';
+        $this->auteur = '';
+        $this->content = '';
         //$this->chiffre = $chiffre;
         $this->comments = new ArrayCollection();
 
@@ -78,7 +80,7 @@ class Article
     //--------------------  Methods  --------------------//
 
     /**
-     * @ORM\preUpdate
+     * @ORM\PreUpdate
      */
     public function setUpdatedValue()
     {
@@ -109,7 +111,7 @@ class Article
     }
 
     public function getAuteur(){
-        return $this->author;
+        return $this->auteur;
     }
 
     public function setAuteur($auteur){

@@ -36,6 +36,11 @@ class Comment
     protected $article;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    protected $content;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $creationDate;
@@ -53,6 +58,8 @@ class Comment
         $this->setUpdated(new \DateTime());
 
         $this->setApproved(true);
+        $this->content='';
+        $this->author='';
     }
     
     //--------------------  Methods  --------------------//
@@ -76,6 +83,35 @@ class Comment
     public function setCreated($creationDate){
         $this->creationDate = $creationDate;
     }
+
+    public function getAuteur(){
+        return $this->auteur;
+    }
+
+    public function setAuteur($auteur){
+        $this->auteur=$auteur;
+    }
+
+    public function getContent(){
+        return $this->content;
+    }
+
+    public function setContent($content){
+        $this->content=$content;
+    }
+
+    public function getArticle(){
+        return $this->article;
+    }
+
+    public function setArticle($article){
+        $this->article=$article;
+    }
+
+    public function getCreationDate(){
+        return $this->creationDate;
+    }
+
 }
 
 ?>
