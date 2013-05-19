@@ -3,6 +3,7 @@
 namespace Blogger\BlogCoursIhmBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -22,22 +23,28 @@ class Article
     protected $id;
 
     /**
+     * @var string $titre
      * @ORM\Column(type="string", length=300)
+     * @Assert\NotBlank()
      */
     protected $titre;
     
     /**
+     * @var string $auteur
      * @ORM\Column(type="string", length=100)
+     * @Assert\MinLength(2)
      */
     protected $auteur;
 
     /**
+     * @var text $content
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     protected $content;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="article", cascade={"remove"})
      */
     protected $comments;
 

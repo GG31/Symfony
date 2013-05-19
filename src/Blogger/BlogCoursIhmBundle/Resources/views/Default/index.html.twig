@@ -16,6 +16,7 @@
         <i class="icon-chevron-left"></i>
     <h2>{{ article.titre }}</h2>
     </a>
+    <a href="{{ path('blogger_blog_cours_ihm_supprimerpage', {'id': article.id}) }}" class="supprimer">Supprimer</a>
   	<i>Par {{ article.auteur }}, le {{ article.creationDate|date('d/m/Y') }}</i>
   	<div class="well">
     	{{ article.content }}
@@ -26,7 +27,11 @@
   <div class="footerArticle">footer1 <a href="{{ path('blogger_blog_cours_ihm_homepage', {'page': 1}) }}" class="btn">
         <i class="icon-chevron-left"></i>
         Retour à la liste
-      </a></div>
+      </a>
+      {% if page>1 %}
+      <a href="{{ path('blogger_blog_cours_ihm_homepage', {'page': page-1} ) }}">Precedent</a>
+      {% endif %}
+      <a href="{{ path('blogger_blog_cours_ihm_homepage', {'page': page+1 }) }}">Suivant</a></div>
 </section>
 
 {% block footer %}{{ parent()}}{% endblock %}

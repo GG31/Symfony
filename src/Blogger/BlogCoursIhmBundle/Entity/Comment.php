@@ -3,6 +3,7 @@
 namespace Blogger\BlogCoursIhmBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -20,7 +21,9 @@ class Comment
     protected $id;
 
     /**
+     * @var string $auteur
      * @ORM\Column(type="string", length=100)
+     * @Assert\MinLength(2)
      */
     protected $auteur;
     
@@ -31,12 +34,14 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity="Article", inversedBy="comments")
-     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $article;
 
     /**
+     * @var text $content
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     protected $content;
 

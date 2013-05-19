@@ -20,4 +20,8 @@ blogger_blog_cours_ihm_commentpage:
     pattern:  /comment
     defaults: { _controller: BloggerBlogCoursIhmBundle:Default:comment }
 
+blogger_blog_cours_ihm_supprimerpage:
+    pattern:  /article/delete/{id}
+    defaults: { _controller: BloggerBlogCoursIhmBundle:Default:supprimer }
+
 
