@@ -5,16 +5,12 @@
 
 {% block body %}
 {% block header %}{{ parent()}}{% endblock %}
-{% block menu %}{{ parent()}}{% endblock %}
-
-<section>
+{% block corps %} {{ parent()}}
   <div class="section">
 	<h1>Ajouter article</h1>
     {% include "BloggerBlogCoursIhmBundle:Default:formulaire.html.twig" %}
-
   </div>
-  
-</section>
 
+{% endblock %}
 {% block footer %}{{ parent()}}{% endblock %}
 {% endblock %}

@@ -5,8 +5,7 @@
 {% block title %}{{ parent() }} - Index{% endblock %}
 {% block body %}
 {% block header %}{{ parent()}}{% endblock %}
-{% block menu %}{{ parent()}}{% endblock %}
-<section>
+{% block corps %} {{ parent()}}
   <div class="section">
     <h2>{{ article.titre }}</h2>
     <i>Par {{ article.auteur }}, le {{ article.creationDate|date('d/m/Y') }}</i>
@@ -37,8 +36,7 @@
         <i class="icon-chevron-left"></i>
         Retour à la liste
       </a></div>
-</section>
 
-
+{% endblock %}
 {% block footer %}{{ parent()}}{% endblock %}
 {% endblock %}

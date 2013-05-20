@@ -37,7 +37,7 @@ class DefaultController extends Controller
         //$article = $entityManager->find('BloggerBlogCoursIhmBundle:Article', $id);
         $repository = $entityManager->getRepository('BloggerBlogCoursIhmBundle:Article');
         $date = new \Datetime();
-        $articles = $repository->findBy(array(), null, 10, 10*($page-1));
+        $articles = $repository->findBy(array(), null, 12, 12*($page-1));
         return $this->render('BloggerBlogCoursIhmBundle:Default:index.html.twig', array(
         'articles' => $articles, 'page' => $page
         ));

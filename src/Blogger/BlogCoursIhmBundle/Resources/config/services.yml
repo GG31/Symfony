@@ -7,6 +7,19 @@ services:
         arguments: ['titre', 'auteur', 'mon contenu....']
     blogger_blog_cours_ihm.Comment:
         class: Blogger\BlogCoursIhmBundle\Entity\Comment
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
+  
+    #twig.extension.intl:
+     #  class: Twig_Extensions_Extension_Intl
+      # tags:
+       #    - { name: twig.extension }
+  
+    #debug.twig.extension:
+     #   class: Twig_Extensions_Extension_Debug
+      #  tags: [{ name: 'twig.extension' }]
          
 #    blogger_blog_cours_ihm.example:
 #        class: %blogger_blog_cours_ihm.example.class%
