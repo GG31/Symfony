@@ -7,30 +7,13 @@
 {% block header %}{{ parent()}}{% endblock %}
 {% block corps %} {{ parent()}}
   <div class="section">
-    <h2>{{ article.titre }}</h2>
-    <i>Par {{ article.auteur }}, le {{ article.creationDate|date('d/m/Y') }}</i>
- 
-    <div class="well">
-      {{ article.content }}
-    </div>
-    <br>
-    <h3>Commentaires</h3>
-    {% for comment in comments %}
-    
-    <i>Par {{ comment.auteur }}, le {{ comment.creationDate|date('d/m/Y') }}</i>
-    <div class="well">
-      {{ comment.content }}
-    </div>
-    {% endfor %}
-
-    <br>
-    <h3>Laisser un commentaire</h3>
+    <h3>Modifier un article</h3>
     <form method="post" {{ form_enctype(form) }}>
       {{ form_widget(form) }}
       <input type="submit" class="btn btn-primary" />
     </form>
-  </div>
-  <div class="footerArticle"><a href="{{ path('blogger_blog_cours_ihm_homepage', {'page': 1}) }}" class="btn">
+
+  <div class="footerArticle">footer1 <a href="{{ path('blogger_blog_cours_ihm_homepage', {'page': 1}) }}" class="btn">
         <i class="icon-chevron-left"></i>
         Retour à la liste
       </a></div>

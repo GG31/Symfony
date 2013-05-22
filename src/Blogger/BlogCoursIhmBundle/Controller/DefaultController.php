@@ -125,4 +125,26 @@ class DefaultController extends Controller
       $entityManager->flush();
       return $this->indexAction(1);
     }
+
+    public function modifierAction($id){
+      $entityManager=$this->getDoctrine()->getManager();
+      $article=$entityManager->getRepository('BloggerBlogCoursIhmBundle:Article')->find($id);
+      $form = $this->createForm(new ArticleType, $article);
+      $request = $this->get('request');
+      if($request->getMethod() == 'POST'){
+        $form->bind($request);
+        if($form->isValid()){
+          $entityManager = $this->getDoctrine()->getManager();
+          $entityManager->persist($article);
+          $entityManager->flush();
+          $comment = new Comment();
+          $comment->setArticle($article);
+          $form = $this->createForm(new CommentType, $comment);
+          $repository = $entityManager->getRepository('BloggerBlogCoursIhmBundle:Comment');
+          $comments = $repository->findByArticle(array('article' => $article), array('creationDate' => 'desc'));
+          return $this->render('BloggerBlogCoursIhmBundle:Default:article.html.twig', array('article'=> $article, 'comments' => $comments, 'form'=>$form->createView()));
+        }
+      }
+      return $this->render('BloggerBlogCoursIhmBundle:Default:modifier.html.twig', array('form'=>$form->createView()));
+    }
 }

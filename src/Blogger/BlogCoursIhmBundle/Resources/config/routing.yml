@@ -24,4 +24,8 @@ blogger_blog_cours_ihm_supprimerpage:
     pattern:  /article/delete/{id}
     defaults: { _controller: BloggerBlogCoursIhmBundle:Default:supprimer }
 
+blogger_blog_cours_ihm_modifierpage:
+    pattern:  /article/modify/{id}
+    defaults: { _controller: BloggerBlogCoursIhmBundle:Default:modifier }
+
 
